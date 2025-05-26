@@ -125,3 +125,9 @@ declare module "next-auth/jwt" {
     isActive?: boolean;
   }
 }
+
+// Helper function for server-side logout (if needed)
+export async function serverLogout() {
+  // This is handled by NextAuth's signOut() function
+  // No custom implementation needed
+}

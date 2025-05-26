@@ -4,6 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import connectDB from "./db";
 import { User } from "@/models/User";
+import { SignJWT } from 'jose';
+import { cookies } from 'next/headers';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -120,4 +122,53 @@ declare module "next-auth/jwt" {
     isApproved: boolean;
     isActive?: boolean;
   }
+}
+/**
+ * Authenticate user credentials and return user object
+ */
+export async function authenticateUser({ email, password }: { email: string, password: string }) {
+  await connectDB();
+  const user = await User.findOne({ email });
+
+  if (!user || !user.isApproved) return null;
+
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) return null;
+
+  return user.toObject();
+}
+
+/**
+ * Generate JWT token from user info
+ */
+export async function generateToken(user: any) {
+  const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
+  const alg = 'HS256';
+
+  return await new SignJWT({
+    sub: user._id.toString(),
+    email: user.email,
+    name: user.name,
+    role: user.role || 'user',
+    isActive: user.isActive !== false,
+    isApproved: user.isApproved,
+  })
+    .setProtectedHeader({ alg })
+    .setIssuedAt()
+    .setExpirationTime('7d')
+    .sign(secret);
+}
+
+/**
+ * Set JWT token as HTTP-only cookie
+ */
+export async function setAuthCookie(token: string) {
+  const cookieStore = await cookies(); // ⬅ await it
+  cookieStore.set('next-auth.session-token', token, {
+    httpOnly: true,
+    sameSite: 'lax',
+    path: '/',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 60 * 60 * 24 * 7, // 7 days
+  });
 }

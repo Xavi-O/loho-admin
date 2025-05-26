@@ -100,7 +100,17 @@ export default function SchemaDocumentation() {
 }
 
 // Sidebar Item Component
-function SidebarItem({ icon, title, active, onClick }) {
+function SidebarItem({
+  icon,
+  title,
+  active,
+  onClick,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  active: boolean;
+  onClick: () => void;
+}) {
   return (
     <button
       className={`flex items-center space-x-3 w-full p-3 rounded-md text-left transition-colors ${

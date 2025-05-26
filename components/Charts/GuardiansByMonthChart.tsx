@@ -85,13 +85,18 @@ export default function GuardiansByMonthChart({
           .sort(([a], [b]) => new Date(`${a}-01`).getTime() - new Date(`${b}-01`).getTime())
           .map(([key, value]) => {
             const date = new Date(`${key}-01`);
-            const base = {
+            const base: {
+              date: string;
+              displayDate: string;
+              [key: string]: string | number;
+            } = {
               date: date.toISOString(),
               displayDate: date.toLocaleDateString('en-US', {
                 month: 'short',
                 year: '2-digit',
               }),
             };
+
             yValues.forEach((val) => {
               base[val] = value[val] || 0;
             });

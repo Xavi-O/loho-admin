@@ -76,9 +76,7 @@ export function LoginForm() {
     }
   }, [searchParams, router]);
 
-  // components/auth/LoginForm.tsx - Add this debug version temporarily
-
-  async function onSubmit(data: LoginFormValues) {
+    async function onSubmit(data: LoginFormValues) {
     setIsLoading(true);
     setError(null);
     
@@ -117,8 +115,12 @@ export function LoginForm() {
 
       if (result?.ok) {
         console.log("✅ Login successful, redirecting...");
-        router.push("/dashboard");
-        router.refresh();
+        
+        // Wait a moment for session to be established
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Use window.location instead of router for more reliable redirect
+        window.location.href = "/dashboard";
       } else {
         console.log("❌ Login failed - result not ok");
         setError("Login failed. Please try again.");

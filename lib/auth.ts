@@ -172,3 +172,16 @@ export async function setAuthCookie(token: string) {
     maxAge: 60 * 60 * 24 * 7, // 7 days
   });
 }
+
+export async function clearAuthCookie() {
+  const cookieStore = await cookies();
+  cookieStore.set({
+    name: 'auth_token',
+    value: '',
+    path: '/',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+    expires: new Date(0), // Set expiry in the past to clear it
+  });
+}

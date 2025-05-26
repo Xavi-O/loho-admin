@@ -14,48 +14,69 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
+        console.log("🔍 NextAuth authorize called with:", { email: credentials?.email });
+        
         if (!credentials?.email || !credentials?.password) {
+          console.log("❌ Missing credentials");
           return null;
         }
 
-        await connectDB();
-        const user = await User.findOne({ email: credentials.email });
+        try {
+          await connectDB();
+          console.log("✅ Database connected");
+          
+          const user = await User.findOne({ email: credentials.email });
+          console.log("🔍 User found:", !!user);
 
-        if (!user) {
-          throw new Error("No user found with this email");
+          if (!user) {
+            console.log("❌ No user found");
+            throw new Error("No user found with this email");
+          }
+
+          if (!user.isApproved) {
+            console.log("❌ User not approved");
+            throw new Error("Your account is pending approval by an administrator");
+          }
+
+          // Check if user is active
+          if (user.isActive === false) {
+            console.log("❌ User account disabled");
+            throw new Error("Account has been disabled");
+          }
+
+          const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+          console.log("🔍 Password valid:", isPasswordValid);
+          
+          if (!isPasswordValid) {
+            console.log("❌ Invalid password");
+            throw new Error("Invalid password");
+          }
+
+          console.log("✅ User authenticated successfully");
+          return {
+            id: user._id.toString(),
+            email: user.email,
+            name: user.name,
+            role: user.role || 'user',
+            isActive: user.isActive !== false,
+            isApproved: user.isApproved
+          };
+        } catch (error) {
+          console.error("🚨 Auth error:", error);
+          throw error;
         }
-
-        if (!user.isApproved) {
-          throw new Error("Your account is pending approval by an administrator");
-        }
-
-        // Check if user is active
-        if (user.isActive === false) {
-          throw new Error("Account has been disabled");
-        }
-
-        const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isPasswordValid) {
-          throw new Error("Invalid password");
-        }
-
-        return {
-          id: user._id.toString(),
-          email: user.email,
-          name: user.name,
-          role: user.role || 'user',
-          isActive: user.isActive !== false,
-          isApproved: user.isApproved
-        };
       }
     })
   ],
   callbacks: {
     async jwt({ token, user }) {
+      console.log("🔍 JWT callback - user:", !!user, "token.sub:", token.sub);
+      
       if (user) {
         token.role = user.role;
         token.isActive = user.isActive;
         token.isApproved = user.isApproved;
+        console.log("✅ JWT token updated with user data");
       }
       
       // Refresh user data on each request to check current status
@@ -67,20 +88,24 @@ export const authOptions: NextAuthOptions = {
             token.isActive = currentUser.isActive !== false;
             token.role = currentUser.role || 'user';
             token.isApproved = currentUser.isApproved;
+            console.log("✅ JWT token refreshed from database");
           }
         } catch (error) {
-          console.error("Error refreshing user status:", error);
+          console.error("🚨 Error refreshing user status:", error);
         }
       }
       
       return token;
     },
     async session({ session, token }) {
+      console.log("🔍 Session callback - token exists:", !!token);
+      
       if (token) {
         session.user.id = token.sub!;
         session.user.role = token.role as string;
         session.user.isActive = token.isActive as boolean;
         session.user.isApproved = token.isApproved as boolean;
+        console.log("✅ Session updated with token data");
       }
       return session;
     }
@@ -126,8 +151,5 @@ declare module "next-auth/jwt" {
   }
 }
 
-// Helper function for server-side logout (if needed)
-export async function serverLogout() {
-  // This is handled by NextAuth's signOut() function
-  // No custom implementation needed
-}
+// Note: All custom JWT functions removed since NextAuth handles authentication
+// The authOptions export above is all you need for NextAuth configuration

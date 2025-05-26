@@ -76,9 +76,13 @@ export function LoginForm() {
     }
   }, [searchParams, router]);
 
+  // components/auth/LoginForm.tsx - Add this debug version temporarily
+
   async function onSubmit(data: LoginFormValues) {
     setIsLoading(true);
     setError(null);
+    
+    console.log("🔍 Login attempt for:", data.email);
 
     try {
       const result = await signIn("credentials", {
@@ -87,7 +91,10 @@ export function LoginForm() {
         redirect: false,
       });
 
+      console.log("🔍 SignIn result:", result);
+
       if (result?.error) {
+        console.log("❌ SignIn error:", result.error);
         // Handle specific error messages
         switch (result.error) {
           case "Account has been disabled":
@@ -108,10 +115,17 @@ export function LoginForm() {
         return;
       }
 
-      router.push("/dashboard");
-      router.refresh();
+      if (result?.ok) {
+        console.log("✅ Login successful, redirecting...");
+        router.push("/dashboard");
+        router.refresh();
+      } else {
+        console.log("❌ Login failed - result not ok");
+        setError("Login failed. Please try again.");
+      }
       
     } catch (err: any) {
+      console.error("🚨 Login exception:", err);
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);

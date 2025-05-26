@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
   
   // Define which paths are protected (require login)
   const protectedPaths = [
-    //"/dashboard", 
+    "/dashboard", 
     "/admin", 
     "/schema", 
     "/schema-doc", 

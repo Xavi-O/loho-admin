@@ -63,8 +63,7 @@ export default function VideosAnalysisPage() {
   }, []);
 
   return (
-    <AnalyticsSidebarLayout active="videos">
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs defaultValue="overview" className="space-y-6 pt-10">
         <TabsList className="w-full flex justify-start mb-4">
           <TabsTrigger value="overview">Visualization</TabsTrigger>
           <TabsTrigger value="table">Data Table</TabsTrigger>
@@ -103,6 +102,5 @@ export default function VideosAnalysisPage() {
             />
         </TabsContent>
       </Tabs>
-    </AnalyticsSidebarLayout>
   );
 }

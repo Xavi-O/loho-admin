@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../ui/mode-toggle";
+import { ShieldUser } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ export function Header() {
   }
   
   return (
-    <header className="border-b">
+    <header className="border-b fixed w-full bg-inherit">
       <div className="w-full px-10 flex h-14 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/dashboard" className="font-bold text-xl">
@@ -59,7 +60,7 @@ export function Header() {
               {session.user.name || session.user.email}
             </span>
           </div>
-          
+          <Link href={"/profile"}> <ShieldUser /> </Link>
           <Button
             variant="outline"
             size="sm"

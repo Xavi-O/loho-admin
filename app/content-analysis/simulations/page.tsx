@@ -65,8 +65,7 @@ export default function SimulationsAnalysisPage() {
   }, []);
 
   return (
-    <AnalyticsSidebarLayout active="simulations">
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs defaultValue="overview" className="space-y-6  pt-10">
         <TabsList className="w-full flex justify-start mb-4">
           <TabsTrigger value="overview">Visualization</TabsTrigger>
           <TabsTrigger value="table">Data Table</TabsTrigger>
@@ -107,6 +106,5 @@ export default function SimulationsAnalysisPage() {
           />
         </TabsContent>
       </Tabs>
-    </AnalyticsSidebarLayout>
   );
 }

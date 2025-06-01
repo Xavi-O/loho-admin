@@ -62,8 +62,7 @@ export default function BooksAnalysisPage() {
   }, []);
 
   return (
-    <AnalyticsSidebarLayout active="books">
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs defaultValue="overview" className="space-y-6 pt-10">
         <TabsList className="w-full flex justify-start mb-4">
           <TabsTrigger value="overview">Visualization</TabsTrigger>
           <TabsTrigger value="table">Data Table</TabsTrigger>
@@ -106,6 +105,5 @@ export default function BooksAnalysisPage() {
             />
         </TabsContent>
       </Tabs>
-    </AnalyticsSidebarLayout>
   );
 }

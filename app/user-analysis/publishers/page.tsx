@@ -4,13 +4,11 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import DataTableTab from '@/components/analytics/DataTableTab';
-import AnalyticsSidebarLayout from '@/components/analytics/AnalyticsSidebarLayout';
 import PublishersByCountryChart from '@/components/Charts/PublishersByCountryChart';
 
 export default function PublishersAnalyticsPage() {
   return (
-    <AnalyticsSidebarLayout active="publishers">
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs defaultValue="overview" className="space-y-6 pt-10">
         <TabsList className="w-full flex justify-start mb-4">
           <TabsTrigger value="overview">Visualization</TabsTrigger>
           <TabsTrigger value="table">Data Table</TabsTrigger>
@@ -27,6 +25,5 @@ export default function PublishersAnalyticsPage() {
           />
         </TabsContent>
       </Tabs>
-    </AnalyticsSidebarLayout>
   );
 }

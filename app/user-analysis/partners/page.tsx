@@ -3,14 +3,12 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import AnalyticsSidebarLayout from '@/components/analytics/AnalyticsSidebarLayout';
 import DataTableTab from '@/components/analytics/DataTableTab';
 import PartnersChart from '@/components/Charts/PartnersChart';
 
 export default function PartnersAnalyticsPage() {
   return (
-    <AnalyticsSidebarLayout active="partners">
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs defaultValue="overview" className="space-y-6 pt-10">
         <TabsList className="w-full flex justify-start mb-4">
           <TabsTrigger value="overview">Visualization</TabsTrigger>
           <TabsTrigger value="table">Data Table</TabsTrigger>
@@ -27,6 +25,5 @@ export default function PartnersAnalyticsPage() {
           />
         </TabsContent>
       </Tabs>
-    </AnalyticsSidebarLayout>
   );
 }

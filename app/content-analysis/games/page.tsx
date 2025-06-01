@@ -4,7 +4,6 @@
 
 import { useEffect, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import AnalyticsSidebarLayout from '@/components/analytics/AnalyticsSidebarLayout';
 import ChartRenderer from '@/components/Charts/ChartRenderer';
 import DataTableTab from '@/components/analytics/DataTableTab';
 

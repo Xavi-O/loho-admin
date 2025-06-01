@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import DataTableTab from '@/components/analytics/DataTableTab';
 import MetricCards from '@/components/analytics/MetricCards';
-import AnalyticsSidebarLayout from '@/components/analytics/AnalyticsSidebarLayout';
 import ChartRenderer from '@/components/Charts/ChartRenderer';
 
 export default function BooksAnalysisPage() {

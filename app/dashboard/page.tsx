@@ -17,6 +17,11 @@ import {
   Video,
   LayoutDashboard,
   Gamepad2,
+  BookImage,
+  NotebookText,
+  ShieldUser,
+  FlaskConical,
+  School2,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -32,7 +37,7 @@ const cards = [
     icon: Users,
     accent: "bg-blue-100 text-blue-600",
     links: [
-      { name: "Guardians", href: "/user-analysis/guardians", icon: Shield, color: "text-blue-600" },
+      { name: "Guardians", href: "/user-analysis/guardians", icon: ShieldUser, color: "text-blue-600" },
       { name: "Learners", href: "/user-analysis/learners", icon: GraduationCap, color: "text-indigo-600" },
     ],
   },
@@ -42,7 +47,7 @@ const cards = [
     icon: Handshake,
     accent: "bg-green-100 text-green-600",
     links: [
-      { name: "Schools", href: "/user-analysis/schools", icon: Building, color: "text-green-600" },
+      { name: "Schools", href: "/user-analysis/schools", icon: School2, color: "text-green-600" },
       { name: "Publishers", href: "/user-analysis/publishers", icon: Book, color: "text-emerald-600" },
       { name: "Partners", href: "/user-analysis/partners", icon: Handshake, color: "text-teal-600" },
     ],
@@ -55,8 +60,8 @@ const cards = [
     links: [
       { name: "Books", href: "/user-analysis/books", icon: BookOpen, color: "text-purple-600" },
       { name: "Videos", href: "/user-analysis/videos", icon: Video, color: "text-pink-600" },
-      { name: "Dals", href: "/user-analysis/dals", icon: LayoutDashboard, color: "text-violet-600" },
-      { name: "Simulations", href: "/user-analysis/simulations", icon: LayoutDashboard, color: "text-indigo-600" },
+      { name: "Dals", href: "/user-analysis/dals", icon: NotebookText, color: "text-violet-600" },
+      { name: "Simulations", href: "/user-analysis/simulations", icon: FlaskConical, color: "text-indigo-600" },
       { name: "Games", href: "/user-analysis/games", icon: Gamepad2, color: "text-fuchsia-600" },
     ],
   },

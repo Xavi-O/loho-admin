@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../ui/mode-toggle";
-import { ShieldUser } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -48,7 +47,6 @@ export function Header() {
         </div>
       
         <div className="flex items-center gap-4">
-          <ShieldUser />
           <div className="hidden md:flex items-center gap-2">
             <span className="text-sm text-muted-foreground">
               {session.user.name || session.user.email}

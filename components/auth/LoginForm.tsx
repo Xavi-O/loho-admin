@@ -1,4 +1,4 @@
-// components/auth/LoginForm.tsx
+// File: components/auth/LoginForm.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -174,7 +174,8 @@ export function LoginForm() {
                 )}
               />
               
-              {/* Forgot Password Link */}
+              {/* 
+              //Forgot Password Link 
               <div className="text-right">
                 <Link 
                   href="/forgot-password" 
@@ -183,7 +184,7 @@ export function LoginForm() {
                   Forgot your password?
                 </Link>
               </div>
-              
+              */}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>

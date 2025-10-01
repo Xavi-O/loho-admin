@@ -1,3 +1,4 @@
+// File: lib/readonlyDb.ts
 // lib/readonlyDb.ts
 import mongoose from "mongoose"
 

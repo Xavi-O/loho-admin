@@ -1,4 +1,4 @@
-// lib/db.ts
+// File: lib/db.ts
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 

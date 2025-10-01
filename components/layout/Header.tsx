@@ -1,3 +1,4 @@
+// File: components/layout/Header.tsx
 // components/layout/Header.tsx
 "use client";
 
@@ -27,18 +28,11 @@ export function Header() {
           <Link href="/dashboard" className="font-bold text-xl">
             LoHo Admin
           </Link>
-          
+          {/* 
           <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="/dashboard"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                pathname === "/dashboard" ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              Dashboard
-            </Link>
             
-            {/* Only show admin link for superadmins */}
+            
+            // Only show admin link for superadmins 
             {session.user.role === "superadmin" && (
               <Link
                 href="/admin"
@@ -49,18 +43,18 @@ export function Header() {
                 User Management
               </Link>
             )}
-            
-            {/* Add more navigation links as needed */}
           </nav>
+          */}
         </div>
-        
+      
         <div className="flex items-center gap-4">
+          <ShieldUser />
           <div className="hidden md:flex items-center gap-2">
             <span className="text-sm text-muted-foreground">
               {session.user.name || session.user.email}
             </span>
           </div>
-          <Link href={"/profile"}> <ShieldUser /> </Link>
+          {/*<Link href={"/profile"}> <ShieldUser /> </Link>*/}
           <Button
             variant="outline"
             size="sm"

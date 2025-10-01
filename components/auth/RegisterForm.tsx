@@ -1,4 +1,5 @@
-// components/auth/RegisterForm.tsx
+// File: components/auth/RegisterForm.tsx
+{/*
 "use client";
 
 import { useState } from "react";
@@ -82,8 +83,9 @@ const registerSchema = z.object({
 });
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
-
+*/}
 export function RegisterForm() {
+  {/*
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -171,7 +173,7 @@ export function RegisterForm() {
         <CardContent className="max-h-[70vh] overflow-y-auto">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              {/* Basic Information */}
+              // Basic Information
               <FormField
                 control={form.control}
                 name="name"
@@ -228,14 +230,14 @@ export function RegisterForm() {
                 )}
               />
 
-              {/* Security Questions Section */}
+              // Security Questions Section
               <div className="border-t pt-4 mt-6">
                 <h3 className="text-lg font-semibold mb-4">Security Questions</h3>
                 <p className="text-sm text-gray-600 mb-4">
                   Choose 3 different security questions for account recovery
                 </p>
 
-                {/* Security Question 1 */}
+                // Security Question 1
                 <FormField
                   control={form.control}
                   name="securityQuestion1"
@@ -279,7 +281,7 @@ export function RegisterForm() {
                   )}
                 />
 
-                {/* Security Question 2 */}
+                // Security Question 2
                 <FormField
                   control={form.control}
                   name="securityQuestion2"
@@ -323,7 +325,7 @@ export function RegisterForm() {
                   )}
                 />
 
-                {/* Security Question 3 */}
+                // Security Question 3
                 <FormField
                   control={form.control}
                   name="securityQuestion3"
@@ -397,6 +399,18 @@ export function RegisterForm() {
           </p>
         </CardFooter>
       </Card>
+    </div>
+  );
+  */}
+
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="p-6 max-w-md text-center shadow rounded-lg">
+        <h1 className="text-2xl font-bold mb-4">Registration Disabled</h1>
+        <p>
+          New user registration is currently disabled. Please contact an admin if you need access.
+        </p>
+      </div>
     </div>
   );
 }

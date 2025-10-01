@@ -1,3 +1,4 @@
+// File: app/register/page.tsx
 // app/register/page.tsx
 import { RegisterForm } from "@/components/auth/RegisterForm";
 import { Metadata } from "next";

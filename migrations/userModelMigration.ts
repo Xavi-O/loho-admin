@@ -1,4 +1,4 @@
-// migrations/userModelMigration.ts
+// File: migrations/userModelMigration.ts
 import mongoose from 'mongoose';
 import connectDB from '@/lib/db';
 import { User } from '@/models/User'; // Adjust the path if necessary

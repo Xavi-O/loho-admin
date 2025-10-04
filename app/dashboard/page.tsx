@@ -58,11 +58,11 @@ const cards = [
     icon: BookOpen,
     accent: "bg-purple-100 text-purple-600",
     links: [
-      { name: "Books", href: "/user-analysis/books", icon: BookOpen, color: "text-purple-600" },
-      { name: "Videos", href: "/user-analysis/videos", icon: Video, color: "text-pink-600" },
-      { name: "Dals", href: "/user-analysis/dals", icon: NotebookText, color: "text-violet-600" },
-      { name: "Simulations", href: "/user-analysis/simulations", icon: FlaskConical, color: "text-indigo-600" },
-      { name: "Games", href: "/user-analysis/games", icon: Gamepad2, color: "text-fuchsia-600" },
+      { name: "Books", href: "/content-analysis/books", icon: BookOpen, color: "text-purple-600" },
+      { name: "Videos", href: "/content-analysis/videos", icon: Video, color: "text-pink-600" },
+      { name: "Dals", href: "/content-analysis/dals", icon: NotebookText, color: "text-violet-600" },
+      { name: "Simulations", href: "/content-analysis/simulations", icon: FlaskConical, color: "text-indigo-600" },
+      { name: "Games", href: "/content-analysis/games", icon: Gamepad2, color: "text-fuchsia-600" },
     ],
   },
   {
